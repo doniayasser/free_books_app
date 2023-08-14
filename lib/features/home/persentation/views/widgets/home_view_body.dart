@@ -28,7 +28,7 @@ class HomeViewBody extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: kHomePagePadding),
                 child: Text(
-                  'Best Seller',
+                  'Newest Books',
                   style:
                       Styles.textStyle24.copyWith(fontWeight: FontWeight.w500),
                 ),

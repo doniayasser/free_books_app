@@ -9,8 +9,12 @@ class CustomErrorMessage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
-      child: Center(child: Text("Error: $errorMess",style: Styles.textStyle14,)),
+      child: Center(
+          child: Text(
+        "Error: $errorMess",
+        style: Styles.textStyle14,
+            textAlign: TextAlign.center,
+      )),
     );
   }
 }
-

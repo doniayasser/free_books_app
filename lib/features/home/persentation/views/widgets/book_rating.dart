@@ -4,8 +4,10 @@ import '../../../../../core/helper/styles.dart';
 
 class BookRating extends StatelessWidget {
   const BookRating(
-      {super.key, this.mainAxisAlignment = MainAxisAlignment.start});
+      {super.key, this.mainAxisAlignment = MainAxisAlignment.start, required this.rating, required this.ratingCount});
   final MainAxisAlignment mainAxisAlignment;
+  final num rating;
+  final int ratingCount;
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +22,8 @@ class BookRating extends StatelessWidget {
         const SizedBox(
           width: 8,
         ),
-        const Text(
-          '4.8',
+        Text(
+          rating.toString(),
           style: Styles.textStyle16,
         ),
         const SizedBox(
@@ -29,7 +31,7 @@ class BookRating extends StatelessWidget {
         ),
         Opacity(
           opacity: 0.5,
-          child: Text('(2390)',
+          child: Text('($ratingCount)',
               style: Styles.textStyle14.copyWith(fontWeight: FontWeight.w600)),
         ),
       ],

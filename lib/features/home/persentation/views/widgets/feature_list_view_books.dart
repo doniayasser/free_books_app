@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/widgets/custom_error_message.dart';
 import 'custom_book_image.dart';
 
-
 class FeatureListViewBooks extends StatelessWidget {
   const FeatureListViewBooks({super.key});
 
@@ -15,36 +14,28 @@ class FeatureListViewBooks extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FeaturedBooksCubit, FeaturedBookStates>(
       builder: (context, state) {
-        if(state is FeaturedBookSuccess)
-        {
+        if (state is FeaturedBookSuccess) {
           return SizedBox(
-            height: MediaQuery
-                .of(context)
-                .size
-                .height * 0.3,
+            height: MediaQuery.of(context).size.height * 0.3,
             child: ListView.builder(
               itemCount: state.books.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return  Padding(
+                return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 6.0),
                   child: CustomBookImage(
-                    imageUrl: state.books[index].volumeInfo.imageLinks.thumbnail,
+                    imageUrl:
+                        state.books[index].volumeInfo.imageLinks?.thumbnail ?? '',
                   ),
                 );
               },
             ),
           );
+        } else if (state is FeaturedBookFailure) {
+          return CustomErrorMessage(errorMess: state.errMessage);
+        } else {
+          return const CustomLoadingIndicator();
         }
-        else if(state is FeaturedBookFailure)
-          {
-            return CustomErrorMessage(errorMess: state.errMessage);
-          }
-        else
-          {
-            return const CustomLoadingIndicator();
-          }
-
       },
     );
   }
